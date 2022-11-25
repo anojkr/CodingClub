@@ -1,0 +1,13 @@
+
+
+    1 KB -> 10^3 bytes -> 2^10
+    1 MB -> 10^6 bytes -> 2^20
+    1 GB -> 10^9 bytes -> 2^30
+    1 TB -> 10^12 bytes -> 2^40
+    1 PB -> 10^15 bytes -> 2^50
+    1 EB -> 10^18 bytes -> 2^60
+
+    1 Million -> 10^6
+    1 Billion -> 10^9
+
+    1 Month = 30 days x 24 hours x 3600 second =>  26 x 10^5

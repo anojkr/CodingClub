@@ -1,0 +1,28 @@
+Introduction
+
+DNS Resolution  Steps
+Browser -> Browser-Cache -> OSCache -> RouterCache -> ISPCache -> DNS
+
+Microservice vs Monolithic
+https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith
+
+API Gateway (RateLimiter)
+Elastic Load Balancer/ Application Load Balancer (It have routing capability)
+
+Consistent Hashing
+https://michaelnielsen.org/blog/
+
+How to scale Application
+https://youtu.be/rExh5cPMZcI
+
+LLD
+Design In-Memory File System
+https://jerry4013.github.io/Github-blog/2020/08/03/LeetCode-588.html
+Design Job Scheduler
+Design meeting scheduler system
+Ticket Booking System
+In memory search engine
+Prefix searching(Phone Contact Management System)  :  CRED
+
+
+
