@@ -1,3 +1,4 @@
+```
 Step to solve High Level Design Questions
 
 1. Requirement Gathering
@@ -35,3 +36,4 @@ Step to solve High Level Design Questions
 		    -Global Cache and Write-around cache policy
     E.Component Design: List down all services in you system
     F.Draw hld diagram to show communication btw different services and component
+```

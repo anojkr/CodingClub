@@ -85,9 +85,8 @@ Given a problem, Please gather requirement
         Will generate random string of six-charter offline and store database
         KeyDatabase(shortUrl, status)
         Will have mem-cache/redis-cache that will always hold 100 unused keys to provide when request comes to application-server
-        KGS also has to make sure not to give the same key to multiple servers. For that, it must synchronize
-(or get a lock on) the data structure holding the keys before removing keys from it and giving them to a
-server
+        KGS also has to make sure not to give the same key to multiple servers. For that, it must synchronize (or get a lock on) 
+        the data structure holding the keys before removing keys from it and giving them to a server
 
         Storage Capacity of KeyDatabase
             64^6 char => 68 billion unique url
