@@ -13,10 +13,10 @@ Design : https://drive.google.com/file/d/1MU3KXgQ22K9LOzLnvpV0e17nziUwYCW9/view?
 3. Capacity Estimation
       Assumption
       -  500 million daily active user
-      -  On averge 500 million tweet per day
+      -  On averge 50 million tweet per day
       
       Storage Estimation:
-        500 x 10^6 tweets/day * 500 Byte(size of each tweet)  => 250 x 10^6 => 250 GB per/day
+        50 x 10^6 tweets/day * 500 Byte(size of each tweet)  => 25 x 10^6 => 25 GB per/day
       
       QPS: 
          -Read Query:
