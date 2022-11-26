@@ -92,7 +92,7 @@ Design: https://drive.google.com/file/d/1jywTj-BMFILeLoW1UEPWkMjf99QMbpms/view?u
 -Encoding(mp4, wav, etc) - Video can play on different devices
 -Segmentation(m3u8 format) - Breaking videos into chunks of 6 sec, and each chunk in different resolution(480p, 720p, 1080p)
 -Thumbnail upload or automatic generation
--Deduplication logic to ensure optimize storage
+-Deduplication logic to ensure optimize storage(Matching Algorithm)
     -Deduplication should be done early in game to save server-computation resources
     -Create checksum value of videos and check for it in his database if something found it keep reference of it this this upload video
     -If new upload video have better quality, then older one then app will update video
