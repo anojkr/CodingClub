@@ -1,4 +1,4 @@
-
+Design: https://drive.google.com/file/d/1j54pl2YF10YVME-O1riRw1LQtdCOQitM/view?usp=sharing
 ```
 Rate Limiting is a process that is used to define the rate and speed at which consumers can access 
 APIs. Throttling is the process of controlling the usage of the APIs by customers during a given 
@@ -38,8 +38,6 @@ Advantages
     Database Sharding
         - userId     
     
-    Caching
-        
           
     Fixed window algorithm:
     
@@ -88,5 +86,32 @@ Advantages
             2. Count the total number of elements in the sorted set. Reject the request if this count is greater 
             than our throttling limit of “3”.
             3. Insert the current time in the sorted set and accept the request
-
+            
+        Component Design
+            - RateLimiter Service
+            - Redis Cache(Store HashMap of user-request)
+            - Database(Rate-limiting rule)
+            - Service server(reservation, userprofile, cab-booking etc.)
+        
+            Steps
+            • Rate limiting rules are stored on the disk. Workers frequently pull rules from the disk and store them in the cache.
+            • When a client sends a request to the server, the request is sent to the rate limiter middleware first.
+            • Rate limiter middleware loads rules from the cache. It fetches counters and last request timestamp from Redis cache. Based on the response, the rate limiter decides
+            • if the request is not rate limited, it is forwarded to API servers. 
+            • if the request is rate limited, the rate limiter returns 429 too many requests error to the client. In the meantime, the request is either dropped or forwarded to the queue
+            
+            Rate limiter in a distributed environment
+                Building a rate limiter that works in a single server environment is not difficult. However,
+                scaling the system to support multiple servers and concurrent threads is a different story.
+                There are two challenges:
+                • Race condition
+                • Synchronization issue
+            
+            Solution:
+                - Sticky session: 
+                    When you introduce a sticky session in your load balancers, each consumer gets sent to exactly one node. 
+                    The downside to this strategy includes a lack of fault tolerance and scaling problems when nodes get overloaded.
+                - Centralized data store: 
+                    You can use a centralized data store like Redis or Cassandra to handle counts for each window and consumer. 
+                    While this adds latency, the flexibility it provides makes it an elegant solution.
 ```
