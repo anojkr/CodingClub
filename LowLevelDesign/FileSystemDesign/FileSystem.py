@@ -1,8 +1,8 @@
 from abc import ABCMeta, abstractmethod
 
 
-class RateLimiter(metaclass=ABCMeta):
+class FileSystem(metaclass=ABCMeta):
 
     @abstractmethod
-    def grantAccess(self):
+    def ls(self):
         pass
