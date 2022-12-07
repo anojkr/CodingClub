@@ -2,6 +2,7 @@ from FileSystemDesign.Directory import Directory
 from FileSystemDesign.File import File
 
 """
+    Reference: https://jerry4013.github.io/Github-blog/2020/08/03/LeetCode-588.html
     FileSystem Implementation used composite design pattern
     Supported Action
         - mkDir : Create new directory
@@ -25,9 +26,12 @@ def driver():
     fileSystem.addContentToFile("MOVIES/ACTION/AVENGER/Ultron/readme.txt", "read subtile")
     fileSystem.addContentToFile("MOVIES/ACTION/AVENGER/EndGame/readme.txt", "write subtile")
     # fileSystem.ls("MOVIES/ACTION/AVENGER")
-    fileSystem.ls("/MOVIES/TEST")
-    fileSystem.lsFile("readme.txt")
-    fileSystem.readContentFromFile("/MOVIES/TEST/readme.txt")
+    # fileSystem.ls("/MOVIES/TEST")
+    # fileSystem.lsFile("readme.txt")
+    # fileSystem.readContentFromFile("/MOVIES/TEST/readme.txt")
+    fileSystem.move("/MOVIES/TEST", "MOVIES/ACTION/AVENGER")
+    fileSystem.ls("/MOVIES")
+    fileSystem.ls("MOVIES/ACTION/AVENGER/TEST")
 
 
 

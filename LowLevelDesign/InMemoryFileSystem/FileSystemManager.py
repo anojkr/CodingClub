@@ -1,16 +1,6 @@
 from File import File
+import utils
 
-
-def getFileName(dirPath):
-    return dirPath.split("/")[-1]
-
-def getPath(prevPath, currDir):
-    currPath = ""
-    if prevPath == "/" or prevPath == "":
-        currPath = "{}".format(currDir.getDirName())
-    else:
-        currPath = "{}/{}".format(prevPath, currDir.getDirName())
-    return currPath
 
 class FileSystemManager:
     rootDir = None
@@ -33,7 +23,7 @@ class FileSystemManager:
         return currDir
 
     def addContentToFile(self, dirPath, fileContent=None):
-        fileName = getFileName(dirPath)
+        fileName = utils.getFileName(dirPath)
         currDir = self.mkdir(dirPath)
         currFile = currDir.getFile(fileName)
         if currFile is None:
@@ -66,7 +56,7 @@ class FileSystemManager:
     def findFile(self, fileName, currDir, prevPath):
         filePathList = []
         for currDir in currDir.getAllDir().values():
-            currPath = getPath(prevPath, currDir)
+            currPath = utils.getPath(prevPath, currDir)
             fileExist = currDir.getFile(fileName)
             if fileExist:
                 filePathList.append(currPath)
@@ -83,8 +73,23 @@ class FileSystemManager:
 
     def readContentFromFile(self, path):
         currDir = self.getRootDirectory()
-        fileName = getFileName(path)
+        fileName = utils.getFileName(path)
         if path is not None:
             currDir = self.getCurrentDirectory(path)
         currFile = currDir.getFile(fileName)
         print(currFile.content)
+
+    def move(self, srcPath, desPath):
+        pathList = srcPath.split("/")
+        srcFileOrDir = pathList[-1]
+        pathList.pop()
+        srcDir = self.getCurrentDirectory("/".join(map(str,pathList)))
+        desDir = self.getCurrentDirectory(desPath)
+        if srcFileOrDir in srcDir.getAllDir():
+            srcNode = srcDir.delDir(srcFileOrDir)
+            desDir.moveDir(srcNode.name, srcNode)
+        elif srcFileOrDir in srcDir.getAllFiles():
+            srcNode = srcDir.delFile(srcFileOrDir)
+            desDir.moveFile(srcNode.name, srcNode)
+
+

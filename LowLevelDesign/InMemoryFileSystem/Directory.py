@@ -22,11 +22,20 @@ class Directory(FileSystem):
     def getAllFiles(self):
         return self.files
 
+    def addDir(self, dirName, dirPath):
+        self.directories[dirName] = Directory(dirName, dirPath)
+        return self.getDir(dirName)
+
     def getDir(self, dirName):
         return self.directories.get(dirName)
 
-    def addDir(self, dirName, dirPath):
-        self.directories[dirName] = Directory(dirName, dirPath)
+    def delDir(self, dirName):
+        dir = self.directories.get(dirName)
+        self.directories.pop(dirName)
+        return dir
+
+    def moveDir(self, dirName, directoryObj):
+        self.directories[dirName] = directoryObj
         return self.getDir(dirName)
 
     def addFile(self, fileName):
@@ -34,3 +43,13 @@ class Directory(FileSystem):
 
     def getFile(self, fileName):
         return self.files.get(fileName)
+
+    def moveFile(self, fileName, fileObj):
+        self.files[fileName] = fileObj
+
+    def delFile(self, fileName):
+        file = self.files.get(fileName)
+        self.files.pop(fileName)
+        return file
+
+
