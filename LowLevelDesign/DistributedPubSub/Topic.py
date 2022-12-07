@@ -1,11 +1,13 @@
-
+import threading
+from collections import deque
 class Topic:
 
     def __init__(self, topicId, topicName):
         self.topicId = topicId
         self.topicName = topicName
-        self.messages = []
+        self.messages = deque()
         self.subscriber = {}
+        self._lock = threading.Lock()
 
     def getTopicId(self):
         return self.topicId
@@ -13,11 +15,17 @@ class Topic:
     def getTopicName(self):
         return self.topicName
 
-    def addMessage(self, message):
-        self.messages.append(message)
+    def publishMessage(self, message):
+        with self._lock:
+            self.messages.append(message)
+
+    def readMessage(self, message):
+        with self._lock:
+            self.messages.popleft(message)
 
     def addSubscriber(self, subscriber):
-        self.subscriber[subscriber.id] = subscriber
+        with self._lock:
+            self.subscriber[subscriber.id] = subscriber
 
     def removeSubscriber(self, subscriberId):
         return self.subscriber.pop(subscriberId)
