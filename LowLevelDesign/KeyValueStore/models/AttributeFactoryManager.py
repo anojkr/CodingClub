@@ -7,12 +7,12 @@ from KeyValueStore.models.Integer import Integer
 class AttributeFactoryManager:
 
     @staticmethod
-    def getValue(key, value):
+    def getValue(value):
         if isinstance(value, bool):
-            return Boolean(key, value)
+            return Boolean(value)
         elif isinstance(value, str):
-            return String(key, value)
+            return String(value)
         elif isinstance(value, int):
-            return Integer(key, value)
+            return Integer(value)
         else:
             raise Exception("InvalidTypeValue")

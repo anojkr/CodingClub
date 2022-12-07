@@ -1,12 +1,14 @@
-from singleton.singleton import Singleton
 import utils
 
-
-class Database():
+#Singleton
+class Database:
     _store = {}
 
     def get(self, key):
-        return self.__class__._store.get(key)
+        value = self.__class__._store.get(key)
+        if value:
+            print("Found key: {}".format(key))
+        return value
 
     def put(self, key, value: dict):
         utils.validator(value)
@@ -16,6 +18,9 @@ class Database():
         result = []
         for key, value in self._store.items():
             for storeAttrKey, storeAttrValue in value.items():
-                if storeAttrKey == attrKey and storeAttrValue == attrValue:
+                if storeAttrKey == attrKey and storeAttrValue.getValue() == attrValue:
                     result.append(key)
-        print("Found keys are {}".format("".join(map(str, result))))
+        if len(result) > 0:
+            print("Found keys are: [{}]".format(",".join(map(str, result))))
+        else:
+            print("No item found")
