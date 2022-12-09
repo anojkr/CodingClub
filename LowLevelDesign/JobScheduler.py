@@ -44,3 +44,61 @@
 
 """
 
+class Subscriber:
+
+  def __init__(self, id, name):
+    self.id = id
+    self.name = name
+
+  def consume(self):
+    print("Msg conumed by {}".format(self.id))
+
+
+class PublishManager:
+  eventMap = {}
+  def ___int__(self):
+    self.eventMap = {}
+
+
+  def addEvent(self,event):
+    self.eventMap[event] = []
+
+  def getAllEvent(self):
+    print(self.eventMap)
+
+  def pushlish(self, event):
+    eventExist = self.eventMap.get(event)
+    if eventExist:
+        for sub in eventExist:
+          sub.consume()
+
+  def subscriberEvent(self, event, subscriber):
+        if event in self.eventMap:
+            self.eventMap[event].append(subscriber)
+
+  def unscriberEvent(self, event, subId):
+        index = -1
+        if event in self.eventMap:
+            subList = self.eventMap.get(event)
+            for i in range(0, len(subList)):
+              if subList[i].id== subId:
+                index = i
+        if index!=-1:
+          subList.pop(index)
+        print("event unsubscribe")
+
+pb = PublishManager()
+pb.addEvent("event1")
+sub1 = Subscriber("sub1", "subsciber-one")
+sub2 = Subscriber("sub2", "subsciber-two")
+pb.subscriberEvent("event1", sub1)
+pb.subscriberEvent("event1", sub2)
+pb.getAllEvent()
+pb.pushlish("event1")
+# pb.pushlish("event1")
+# pb.pushlish("event1")
+# pb.pushlish("event1")
+pb.unscriberEvent("event1", "sub1")
+print("\n Test")
+pb.pushlish("event1")
+# pb.getAllEvent()
