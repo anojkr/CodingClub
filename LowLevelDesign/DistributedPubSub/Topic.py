@@ -25,7 +25,7 @@ class Topic:
 
     def addSubscriber(self, subscriber):
         with self._lock:
-            self.subscriber[subscriber.id] = subscriber
+            self.subscriber[subscriber.subscriberId] = subscriber
 
     def removeSubscriber(self, subscriberId):
         return self.subscriber.pop(subscriberId)

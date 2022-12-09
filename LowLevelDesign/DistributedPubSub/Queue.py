@@ -19,12 +19,12 @@ class Queue:
 
     def publishMessage(self, topicId, message: Message):
         self.topicMap.get(topicId).publishMessage(message)
-        print("Message: {} is published to {}".format(message.id, topicId))
+        print("Message: {} is published to {}".format(message.messageId, topicId))
         # self.topicMap.get(topicId).triggerConsumer()
 
     def addSubscriber(self, topicId:str, subscriber: Subscriber):
         self.topicMap.get(topicId).addSubscriber(subscriber)
-        print("{} is subscribed to {}".format(subscriber.id, topicId))
+        print("{} is subscribed to {}".format(subscriber.subscriberId, topicId))
 
     def getAllSubscribers(self, topicId):
         allSubscribers = self.topicMap.get(topicId).getAllSubscribers()
@@ -33,6 +33,6 @@ class Queue:
 
     def getAllMessages(self, topicId):
         allMessages = self.topicMap.get(topicId).getAllMessages()
-        messageIds = [_.id for _ in allMessages]
+        messageIds = [_.messageId for _ in allMessages]
         print("Messages of {} are {}".format(topicId, messageIds))
         return allMessages

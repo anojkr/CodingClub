@@ -1,6 +1,5 @@
-
 class Message:
 
-    def __init__(self, id, text):
-        self.id = id
-        self.text = text
+    def __init__(self, messageId, body):
+        self.messageId = messageId
+        self.body = body

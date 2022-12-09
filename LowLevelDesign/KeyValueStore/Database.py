@@ -11,7 +11,6 @@ class Database:
         return value
 
     def put(self, key, value: dict):
-        utils.validator(value)
         self.__class__._store[key] = value
 
     def search(self, attrKey, attrValue):

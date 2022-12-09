@@ -1,18 +1,17 @@
-
 from KeyValueStore.models.Boolean import Boolean
 from KeyValueStore.models.String import String
 from KeyValueStore.models.Integer import Integer
 
 
-class AttributeFactoryManager:
+class AttributeFactoryManager(object):
+    attributeMap = {}
 
-    @staticmethod
-    def getValue(value):
-        if isinstance(value, bool):
-            return Boolean(value)
-        elif isinstance(value, str):
-            return String(value)
-        elif isinstance(value, int):
-            return Integer(value)
-        else:
-            raise Exception("InvalidTypeValue")
+    def __init__(self):
+        self.__class__.attributeMap = {
+            bool: Boolean(),
+            str: String(),
+            int: Integer()
+        }
+
+    def getAttributeProvider(self, type):
+        return self.__class__.attributeMap.get(type)
