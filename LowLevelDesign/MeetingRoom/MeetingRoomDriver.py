@@ -5,6 +5,7 @@ from MeetingRoom.models.MediaRoom import MediaRoom
 from MeetingRoom.UserEventService import UserEventService
 from MeetingRoom.models.User import User
 from MeetingRoom.models.Event import Event
+from datetime import datetime
 
 def meetingRoomDriver():
     userService = UserEventService()
@@ -21,12 +22,18 @@ def meetingRoomDriver():
     meetingCalender.addMeetingRoom(room1)
     meetingCalender.addMeetingRoom(room2)
     meetingCalender.getMeetingRooms()
-    event1 = Event("event-1", 1203, 30, user1, room1).addGuest(user1).addGuest(user2)
-    event2 = Event("event-2", 123, 12, user1, room1).addGuest(user3)
-    meetingCalender.bookEvent(event1, "11-12-2022")
-    meetingCalender.bookEvent(event2, "11-12-2022")
-    # print(meetingCalender.getMeetingRoomById("conf_room_1").id)
-    meetingCalender.getEvents("conf_room_1","11-12-2022")
+
+    event_one_startTime = 1670893200
+    eventOneDayEpoc = datetime.fromtimestamp(event_one_startTime).date().today().strftime('%s')
+
+    event_two_startTime = 1670895000
+    eventTwoDayEpoc = datetime.fromtimestamp(event_two_startTime).date().today().strftime('%s')
+
+    event1 = Event("event-1", event_one_startTime, 60, user1, room1).addGuest(user1).addGuest(user2)
+    event2 = Event("event-2", event_two_startTime, 60, user1, room1).addGuest(user3)
+    meetingCalender.bookEvent(event1, eventOneDayEpoc)
+    meetingCalender.bookEvent(event2, eventTwoDayEpoc)
+    meetingCalender.getEvents("conf_room_1", eventTwoDayEpoc)
 
 if __name__ == "__main__":
     meetingRoomDriver()

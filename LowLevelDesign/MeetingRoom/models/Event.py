@@ -1,5 +1,6 @@
 from MeetingRoom.models.User import User
 from MeetingRoom.models.MeetingRoom import MeetingRoom
+from datetime import datetime
 
 class Event(object):
 
@@ -38,3 +39,6 @@ class Event(object):
     def setMeetingRoom(self, meetingRoom: MeetingRoom):
         self.meetingRoom = meetingRoom
         return self
+
+    def __str__(self):
+        return "\nId: {}\n\tDescription:{}\n\tEvent-time: {}\n\tDuration: {} Min".format(self.id,self.description,datetime.fromtimestamp(self.eventTime), self.duration)

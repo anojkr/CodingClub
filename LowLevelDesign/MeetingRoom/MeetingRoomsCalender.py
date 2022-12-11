@@ -28,8 +28,8 @@ class MeetingRoomsCalender(object):
     def getEvents(self, meetingRoomId, day):
         dayEvents = self.meetingRoomMap.get(meetingRoomId).get(day)
         if dayEvents:
-            eventIds = [_.id for _ in dayEvents]
-            print("All event for {} for day {} are {}".format(meetingRoomId, day, ",".join(map(str, eventIds))))
+            for event in dayEvents:
+                print(event)
             return dayEvents
         return []
 
