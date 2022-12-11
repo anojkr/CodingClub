@@ -24,7 +24,11 @@ class UserEventService(object):
         return userList
 
     def getUserEvent(self, userId, day):
-        return self.__class__.UserEvent.get(userId).get(day)
+        userEvents = self.__class__.UserEvent.get(userId).get(day)
+        print("\nUserEvent for {}".format(userId))
+        for usrEvent in  userEvents:
+            print(usrEvent)
+        return userEvents
 
     def addUser(self, user: User):
         self.__class__.User[user.id] = user
