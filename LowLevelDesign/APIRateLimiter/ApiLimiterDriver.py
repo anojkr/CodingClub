@@ -1,11 +1,11 @@
 import threading
 import time
 
-from APIRateLimiter.RateLimiter import RateLimiter
+from APIRateLimiter.SlidingWindowRateLimiter import SlidingWindowRateLimiter
 from Request import Request
 
 def apiLimiterDriver():
-    rateLimiter = RateLimiter(1, 1)
+    rateLimiter = SlidingWindowRateLimiter(1, 1)
     request = Request("172.0.0.1", "mac-os-1").setTime()
     """
         result = []
