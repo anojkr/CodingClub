@@ -4,4 +4,8 @@ class AttributeService(object):
         self.attributeFactory = attributeFactory
 
     def getAttributeValue(self, value):
-        return self.attributeFactory.getAttributeProvider(type(value)).setValue(value)
+        response = self.attributeFactory.getAttributeProvider(type(value))
+        if response:
+            return response.setValue(value)
+        else:
+            raise BaseException("Not supported type")

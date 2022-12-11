@@ -1,8 +1,11 @@
+import threading
+
 import utils
 
 #Singleton
 class Database:
     _store = {}
+    _lock = threading.Lock()
 
     def get(self, key):
         value = self.__class__._store.get(key)
@@ -11,7 +14,8 @@ class Database:
         return value
 
     def put(self, key, value: dict):
-        self.__class__._store[key] = value
+        with self.__class__._lock:
+            self.__class__._store[key] = value
 
     def search(self, attrKey, attrValue):
         result = []
