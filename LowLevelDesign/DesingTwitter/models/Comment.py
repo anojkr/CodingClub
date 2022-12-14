@@ -16,3 +16,6 @@ class Comment(IComment):
 
     def getCommentId(self):
         return self.commentId
+
+    def __str__(self):
+        return "Comment:{}, {}, {}".format(self.commentId, self.userId ,self.text)

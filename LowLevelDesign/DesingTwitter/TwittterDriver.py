@@ -3,6 +3,7 @@
 from DesingTwitter.models.User import User
 from DesingTwitter.UserService import UserService
 from DesingTwitter.models.Tweet import Tweet
+from DesingTwitter.models.Comment import Comment
 from DesingTwitter.TwittterService import TwitterService
 
 def twitterDriver():
@@ -26,6 +27,8 @@ def twitterDriver():
     twitterService.postTweet(tweet1)
     twitterService.postTweet(tweet2)
     twitterService.postTweet(tweet3)
+    twitterService.addComment("tweet-1", Comment("comment-1", "text-1", "user-1", "tweet-1"))
+    twitterService.getCommentForTweetId("tweet-1")
 
     twitterService.getUserFeed("user-1")
 
