@@ -6,9 +6,9 @@ from DesignSQL.models import Driver
 def SqlDriver():
     sql = SQL(Database("UBER"))
     sql.addTable("driver")
-    sql.addRecord("driver", "id-1", Driver("id-1", "anoj", 30))
-    sql.addRecord("driver", "id-2", Driver("id-2", "vinod", 32))
-    sql.addRecord("driver", "id-3", Driver("id-3", "nitin", 26))
+    sql.addRecord("driver", "id-1", Driver("id-1", "anoj"))
+    sql.addRecord("driver", "id-2", Driver("id-2", "vinod"))
+    sql.addRecord("driver", "id-3", Driver("id-3", "nitin"))
     recordSet = sql.getRecord("driver", ["id-3", "id-2"])
     for _ in recordSet:
         print("{}".format(_))

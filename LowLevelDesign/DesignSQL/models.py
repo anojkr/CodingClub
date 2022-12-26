@@ -2,10 +2,9 @@
 
 class Driver(object):
 
-    def __init__(self, id, name, age):
+    def __init__(self, id, name):
         self.id = id
         self.name = name
-        self.age = age
 
     def __str__(self):
-        return "[{}, {}, {}]".format(self.id, self.name, self.age)
+        return "[{}, {}]".format(self.id, self.name)
