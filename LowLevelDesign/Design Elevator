@@ -1,0 +1,40 @@
+Design Elevator System
+
+Actor
+	-Person
+Entities
+	-Building
+	-Floor
+	-Elevator
+	-InternalDisplayControl
+	-ExternalDisplayControl
+	-Display
+	-Direction
+
+State(Running, Stop, Idle)
+Elevator(id: string, display: Display, internalDisplay: InternalDisplayControl, state: State)
+Floor(id:string, floorNo: string, externalDisplay: ExternalDisplayControl)
+Building(floors: List<Floors>)
+
+DisplayI(id: string, currentFloor: Floor, direction: Direction)
+	+pressButton()
+	-InternalDisplayControl
+	-ExternalDisplayControl
+
+ElevatorControllerI
+	ElevatorController()
+		+SubmitNewRequest()
+
+InternalDisplayControl()
+	+pressButton() and submit request to InternalDispatcher
+
+InternalDispatcher()
+	-elevators : List<Elevetor>
+	+submitRequest() to elevatorController
+
+ExternalDisplayControl()
+	+pressButton() and submit request to ExternalDispatcher
+
+ExternalDispatcher()
+	-elevators : List<Elevetor>
+	+submitRequest() to elevatorController
