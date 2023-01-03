@@ -1,0 +1,56 @@
+SnakeLadder Game
+
+GameStatusEnum(Not_Started, Running, Finished)
+
+Player(id : string, position: Cell, highestScore: Int, currentScore: Int, winner: bool)
+	setPosition()
+	getPosition()
+	setScore()
+	getScore()
+	setCurrentScore()
+	getCurrentScore()
+	setWinner()
+	getWinner()
+
+Game(id: string, players: List<Players>, board: Board, gameSatus: GameStatus)
+	addPlayers()
+	deletePlayers()
+	setBoard()
+	getBoard
+	setGameStatus()
+	getGameStatus()
+
+
+BoardInterface 
+	-> DefaultBoard(id: string, size: int, cells : List<Cell>, entities: List<Enitity>)
+			setSize()
+			getSize()
+			addCells()
+			deleteCells()
+			addEnitites()
+			deleteEnitites()
+
+Cell(id: string, xPos: int, yPos: int)
+	getCellId()
+EnityInterface -> Snake(startCell: Cell, endCell: Cell), Ladder(startCell: Cell, endCell: Cell)
+DiceInterface -> SingleDice(id, maxVal), DoubleDice(id, maxValDiceOne, maxValDiceTwo)
+
+
+GameService(game, board. dice)
+
+	-> initializeGame
+		board.addEnitites(ladder) 
+		board.addEnitites(sankes)
+		game.addPlayers()
+
+	-> startGame
+	-> movePlayer(player: Player, targetPosition: Cell)
+
+
+DiceService(dice)
+
+	def __init___(self, dice):
+		dice = dice
+
+	def rollDice():
+		return self.dice.rollDice()

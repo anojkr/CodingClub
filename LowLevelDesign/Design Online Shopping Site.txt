@@ -1,0 +1,47 @@
+Design Online Shopping Site
+
+Entities
+
+Category(Electronics, TV, MOBILE, CLOTHING)
+Catalogue(id, category: Category, products: List<Products>)
+	- addProduct
+	- delProduct
+Product(id, name, discription, quantity)
+ProductRating(productId, voteCount, rating)
+Comment(id, timestamp, text)
+ProductReveiew(productId, userId, comment)
+
+Item(productId, count)
+Cart(id, userId, items: List<Items>)
+OrderStatus(BOOKED, SHIPPED, CANCELLED)
+Order(orderId, amount, bookingAt, orderStatus, shipmentId)
+	->updateOrderStatus()
+
+
+OrderBookingManagerI()
+OrderBookingManager(order, payment, notification, shipment)
+	-> createOrder
+	-> cancelOrder
+	-> processOrderPayment
+	-> creatingShippingConsignment
+	-> notifyCustomer
+
+ShipmentI(shipmentId, orderId, shipmentStatus)
+	-XService
+	-YService
+	-ZService
+
+PaymentI(id, paymentType)
+	-CardPayment
+	-CashPayment
+	-UPIPayement
+
+NotificationI(id, notificationType)
+	-SMSNotification
+	-EmailNotification
+
+UserType(ADMIN, SELLER, CUSTOMER)
+User(id, name, accountType)
+	-Admin()
+	-Seller()
+	-Buyer() -> placeOrder

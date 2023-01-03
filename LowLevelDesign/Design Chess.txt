@@ -1,0 +1,43 @@
+Design Chess
+
+Requirement Gathering
+We’ll focus on the following set of requirements while designing the game of chess:
+	- The system should support two online players to play a game of chess.
+	- All rules of international chess will be followed.
+	- Each player will be randomly assigned a side, black or white.
+	- Both players will play their moves one after the other. The white side plays the first move.
+	- Players can’t cancel or roll back their moves.
+	- The system should maintain a log of all moves by both players.
+	- Each side will start with 8 pawns, 2 rooks, 2 bishops, 2 knights, 1 queen, and 1 king.
+	- The game can finish either in a checkmate from one side, forfeit or stalemate (a draw), or resignation.
+
+List all Class entities
+	- Game
+	- Player
+	- Board(8*8)
+	- Cell
+	- Enitity -> King, Queen, etc
+
+----------------------------------------------------------------------------------------------------
+
+PieceType(King, Queen, Bishop, Elephant, Rooke, Pawn)
+Piece(isBlack: bool, pieceType: PieceType, isKilled: bool, position: Cell)
+	def canMove(startPos: Cell, endPos: Cell)
+	-> King()
+	-> Queen()
+	-> Bishop()
+	-> Elephant()
+	-> Rooke()
+	-> Pawn()
+
+Cell(id: string, posX: int, posY: int, piece: Piece=None, isOccupied: bool=False)
+Board(id: string, size: int, cells: List<Cell>)
+Player(id: string, score: int, isAsssinedPiecesBlack: bool)
+Move(id: string, startPos: Cell, endPos: Cell, player: Player)
+GameStatus(Not_Started, Running, Finished)
+Game(id: string, players: List<Player>, board: Board, moves: List<Moves>, gameStatus: GameStatus)
+
+
+GameService(game: Game)
+	def initializeGame()
+	def startGame()
